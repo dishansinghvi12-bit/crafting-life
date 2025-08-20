@@ -1,23 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Crafting Life — Single File</title>
+<title>Crafting Life — Final Complete Version</title>
 <style>
 :root{
   --bg1:#fff8f0; --bg2:#fff3e8; --card:#fffdfa; --ink:#222;
   --muted:#6b6b6b; --accent:#3b3b3b; --sepia:#8b5e3c; --good:#10b981; --amber:#f59e0b;
-  --overlay: rgba(17,17,23,0.88);
+  --overlay: rgba(17,17,23,0.85);
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--ink);height:100vh;overflow:hidden}
 .app{display:flex;flex-direction:column;height:100vh}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #efe3d2;background:linear-gradient(90deg,#fffaf0,#fff3e8)}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #efe3d2;background:linear-gradient(90deg,#fffaf0,#fff3e8)}
 .title{font-weight:800;font-size:18px}
 .controls{display:flex;gap:8px;align-items:center}
 .badge{background:#111827;color:#fffbeb;padding:6px 10px;border-radius:999px;font-size:13px}
-.content{flex:1;overflow:auto;padding:16px}
+.content{flex:1;overflow:auto;padding:18px}
 .card{background:var(--card);border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:14px;box-shadow:0 8px 18px rgba(15,15,15,0.06)}
 .grid{display:grid;gap:14px}
 .cols-3{grid-template-columns:1fr 320px 220px}
@@ -29,15 +29,15 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;
 .btn-green{background:var(--good);color:white}
 .small{font-size:13px;color:var(--muted)}
 .newsFull{position:fixed;inset:0;background:var(--overlay);display:flex;align-items:center;justify-content:center;z-index:60}
-.newsCard{width:92%;max-width:980px;background:#fffaf0;border-radius:12px;padding:22px;display:flex;gap:18px;box-shadow:0 18px 40px rgba(0,0,0,0.45);align-items:center}
+.newsCard{width:92%;max-width:1000px;background:#fffaf0;border-radius:12px;padding:22px;display:flex;gap:18px;box-shadow:0 18px 40px rgba(0,0,0,0.4);align-items:center}
 .newsImg{flex:0 0 360px;height:240px;border-radius:8px;overflow:hidden;background:linear-gradient(180deg,#f0e6d9,#e6d6bb);display:flex;align-items:center;justify-content:center}
 .newsText{flex:1;text-align:left}
-.headline{font-size:24px;color:var(--sepia);font-weight:800;margin:0 0 6px 0}
+.headline{font-size:28px;color:var(--sepia);font-weight:900;margin:0 0 6px 0}
 .byline{font-size:13px;color:var(--muted);margin-bottom:10px}
 .pager{height:8px;background:#eee;border-radius:999px;overflow:hidden;margin-top:10px}
 .pager > div{height:100%;background:#f59e0b;width:0%}
 .overlayClose{position:absolute;right:18px;top:18px;background:transparent;border:2px solid #fff;color:#fff;padding:6px 8px;border-radius:8px;cursor:pointer}
-.footerbar{position:fixed;left:0;right:0;bottom:0;background:#fff9ef;padding:8px 14px;border-top:1px solid #efe1c9;backdrop-filter:blur(6px);display:flex;justify-content:space-between;align-items:center;z-index:50}
+.footerbar{position:fixed;left:0;right:0;bottom:0;background:#fff9ef;padding:8px 18px;border-top:1px solid #efe1c9;display:flex;justify-content:space-between;align-items:center;z-index:50}
 .workspace{display:flex;gap:14px;align-items:flex-start}
 .leftCol{flex:1}
 .rightCol{width:320px}
@@ -56,17 +56,18 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;
 .shopItem{padding:10px;border-radius:10px;border:1px solid #efe3d2;background:#fff;display:flex;flex-direction:column;gap:8px}
 .row{display:flex;gap:8px;align-items:center}
 .backBtn{background:transparent;border:1px solid #111827;color:#111827;padding:6px 8px;border-radius:8px;cursor:pointer}
-.dayProgress{height:8px;background:#eee;border-radius:999px;overflow:hidden;margin-left:12px;flex:1}
+.dayProgress{height:8px;background:#eee;border-radius:999px;overflow:hidden;margin-left:18px;flex:1}
 .dayProgress>div{height:100%;background:#10b981;width:0%}
+.fullscreenImg{width:100%;height:100%;object-fit:cover}
 .quizOpt{display:block;padding:10px 12px;margin:8px 0;border-radius:8px;border:1px solid #e6d9c6;background:#fff;cursor:pointer;text-align:left}
-@media (max-width:980px){ .newsCard{flex-direction:column} .rightCol{width:100%} .newsImg{display:none} }
+@media (max-width:980px){ .cols-3{grid-template-columns:1fr} .newsImg{display:none} .newsCard{flex-direction:column} .rightCol{width:100%} }
 </style>
 </head>
 <body>
 <div class="app">
   <div class="topbar">
-    <div style="display:flex;align-items:center;gap:10px">
-      <div class="title">Crafting Life — Playable</div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="title">Crafting Life — Final</div>
       <div class="small muted">Day</div>
       <div class="badge" id="badge-day">1</div>
       <div class="dayProgress" title="Day progress"><div id="dayProgressFill" style="width:0%"></div></div>
@@ -105,8 +106,14 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;
 </div>
 
 <script>
-/* Single-file full game script: news (fullscreen), customizable orders, mini-games, quiz, shop, WebAudio music & SFX */
-const STATE = { day:1, coins:0, rep:0, owned:{}, ordersServed:0, ordersNeeded:3, currentOrder:null, roundScore:0, stars:0 };
+/* Final complete version script: music + SFX, fullscreen news, customizable orders, back button */
+// State
+const STATE = {
+  day: 1, coins: 0, rep: 0, owned: {}, ordersServed:0, ordersNeeded:3, currentOrder:null, roundScore:0, stars:0,
+  history: [] // store day results
+};
+
+// DOM refs
 const main = document.getElementById('main');
 const badgeDay = document.getElementById('badge-day');
 const badgeRep = document.getElementById('badge-rep');
@@ -124,31 +131,33 @@ const dayProgressFill = document.getElementById('dayProgressFill');
 const backBtn = document.getElementById('backBtn');
 const muteBtn = document.getElementById('muteBtn');
 
-function $(s){return document.querySelector(s);}
-function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
-function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
-function updateBadges(){ badgeDay.textContent=STATE.day; badgeRep.textContent=STATE.rep; badgeCoins.textContent=STATE.coins; dayProgressFill.style.width = ((STATE.day-1)%7)/6*100 + '%'; }
-
-// Inline cartoon SVG news
+// News items with inline SVG (cartoon-style)
 const NEWS = [
-  {headline:"Crafting Times — A Curious Craft Emerges", byline:"Taxidermy origins", text:"Taxidermy: from Greek 'taxis' (arrangement) and 'derma' (skin). Naturalists used it to study species.", svg:`
+  {headline:"Crafting Times — A Curious Craft Emerges", byline:"Taxidermy origins", text:"Taxidermy: from Greek 'taxis' (arrangement) and 'derma' (skin). Collectors and naturalists used it to study species.", svg:`
     <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f7efe0"/><g transform="translate(20,10)"><ellipse cx="150" cy="170" rx="120" ry="36" fill="#e6d6bb"/><path d="M20 150 C70 40, 260 40, 320 150" fill="#f3e7d6" stroke="#8b5e3c" stroke-width="3"/><circle cx="120" cy="90" r="24" fill="#b86c39" stroke="#51260d" stroke-width="2"/><rect x="150" y="70" width="70" height="44" rx="8" fill="#d3b08a" stroke="#6b3f23"/><text x="6" y="230" font-size="10" fill="#6b3f23">Illustration: stylized mount</text></g></svg>`},
   {headline:"Crafting Times — Dolls Too Real to Ignore", byline:"Victorian mourning", text:"Victorian dolls sometimes used real human hair or teeth to remember the dead — a practice that raises ethics questions today.", svg:`
     <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#fff7f0"/><g transform="translate(20,10)"><rect x="20" y="16" width="180" height="160" rx="12" fill="#f3e0d6" stroke="#b86c39"/><circle cx="110" cy="80" r="42" fill="#fbeee8" stroke="#b86c39"/><circle cx="92" cy="72" r="6" fill="#2b2b2b"/><circle cx="128" cy="72" r="6" fill="#2b2b2b"/><path d="M92 110 C110 126, 130 126, 148 110" stroke="#c85e6a" stroke-width="4" fill="none"/><text x="6" y="220" font-size="10" fill="#6b3f23">Illustration: stylized mourning doll</text></g></svg>`},
-  {headline:"Crafting Times — Preserving Life & Memory", byline:"Ethics & museums", text:"Modern museums balance education and ethics: replicas and context teach history responsibly.", svg:`
+  {headline:"Crafting Times — Preserving Life & Memory", byline:"Ethics & museums", text:"Modern museums balance education and ethics: replicas and context are used to teach responsibly without glorifying harmful practices.", svg:`
     <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f8f3ea"/><g transform="translate(10,10)"><rect x="10" y="14" width="120" height="110" rx="10" fill="#efe1d0" stroke="#c89b6b"/><rect x="190" y="24" width="140" height="80" rx="10" fill="#f6e9de" stroke="#b88a5a"/><circle cx="70" cy="68" r="34" fill="#d9b79a" stroke="#8b5e3c"/><circle cx="260" cy="56" r="26" fill="#fbeee8" stroke="#8b5e3c"/><text x="6" y="210" font-size="10" fill="#6b3f23">Illustration: museum case & doll</text></g></svg>`}
 ];
 
-// Quiz Bank
+// Quiz bank per day
 const QUIZZES = {
-  1: [{q:"What does 'taxidermy' literally mean?", opts:["Arrangement of skin","Toy making","Animal painting"], a:0},
-      {q:"Taxidermy became more popular in which era?", opts:["Victorian Era","Bronze Age","Future"], a:0}],
-  2: [{q:"Victorian dolls sometimes used which material?", opts:["Real hair","Plastic","LEDs"], a:0},
-      {q:"Why do museums use replicas?", opts:["Ethics & conservation","Cheaper","Space saving"], a:0}],
-  3: [{q:"Modern taxidermy is used for?", opts:["Education & conservation","Fashion","Cooking"], a:0},
-      {q:"Realistic dolls are often used in?", opts:["Therapy","Roadwork","Cooking"], a:0}]
+  1: [
+    {q:"What does 'taxidermy' literally mean?", opts:["Arrangement of skin","Toy making","Animal painting"], a:0},
+    {q:"Taxidermy became more popular in which era?", opts:["Victorian Era","Stone Age","Future"], a:0}
+  ],
+  2: [
+    {q:"Victorian dolls sometimes used which material?", opts:["Real hair","Plastic","LEDs"], a:0},
+    {q:"Why do museums use replicas?", opts:["Ethics & conservation","Costume","Tastes"], a:0}
+  ],
+  3: [
+    {q:"Modern taxidermy is often used for?", opts:["Education & conservation","Fashion","Cooking"], a:0},
+    {q:"Realistic dolls today are used in?", opts:["Therapy","Roadwork","Construction"], a:0}
+  ]
 };
 
+// Shop items
 const SHOP = [
   {id:'glassEyes', name:'Premium Glass Eyes', cost:30, desc:'+5 realism on mounts & dolls', icon:'👁️'},
   {id:'premiumHair', name:'Premium Mohair', cost:30, desc:'+5 hair score on dolls', icon:'💈'},
@@ -156,27 +165,36 @@ const SHOP = [
   {id:'safeChem', name:'Preservatives', cost:25, desc:'+5 preservation (taxidermy)', icon:'🧪'}
 ];
 
-// Audio: simple WebAudio engine (museum-like drone + sfx)
-const AudioEngine = (function(){
-  let ctx, master, droneGain;
-  const sfx = {};
+// Utility
+function $(sel){return document.querySelector(sel);}
+function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function updateBadges(){ badgeDay.textContent = STATE.day; badgeRep.textContent = STATE.rep; badgeCoins.textContent = STATE.coins; dayProgressFill.style.width = ((STATE.day-1)%7)/6*100 + '%'; }
+
+// --- Audio engine: museum-like music + SFX (WebAudio) ---
+const Audio = (function(){
+  let ctx, master, droneGain, bellGain;
+  let sfx = {};
   function init(){
     if (ctx) return;
-    try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){ console.warn('No audio'); return; }
-    master = ctx.createGain(); master.gain.value = 0.14; master.connect(ctx.destination);
-    // drone
+    try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){ console.warn('Audio not available'); return; }
+    master = ctx.createGain(); master.gain.value = 0.16; master.connect(ctx.destination);
+    // drone: two sawtooth-ish via oscillator + filter for warmth
     droneGain = ctx.createGain(); droneGain.gain.value = 0.6;
     const o1 = ctx.createOscillator(); o1.type='sine'; o1.frequency.value = 110;
     const o2 = ctx.createOscillator(); o2.type='sine'; o2.frequency.value = 116.54;
     const filt = ctx.createBiquadFilter(); filt.type='lowpass'; filt.frequency.value = 600;
     o1.connect(droneGain); o2.connect(droneGain); droneGain.connect(filt); filt.connect(master);
     o1.start(); o2.start();
-    // sfx
-    sfx.click = ()=>{ const g=ctx.createGain(); const o=ctx.createOscillator(); o.type='square'; o.frequency.value=1200; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.06,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.15); o.start(t); o.stop(t+0.16); };
-    sfx.page = ()=>{ const g=ctx.createGain(); const o=ctx.createOscillator(); o.type='triangle'; o.frequency.value=400; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.05,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.8); o.start(t); o.stop(t+0.9); };
-    sfx.ding = ()=>{ const g=ctx.createGain(); const o=ctx.createOscillator(); o.type='sine'; o.frequency.value=880; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.08,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.6); o.start(t); o.stop(t+0.7); };
-    sfx.coin = ()=>{ const g=ctx.createGain(); const o=ctx.createOscillator(); o.type='square'; o.frequency.value=600; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.08,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.5); o.start(t); o.stop(t+0.6); };
-    sfx.error = ()=>{ const g=ctx.createGain(); const o=ctx.createOscillator(); o.type='sawtooth'; o.frequency.value=220; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.06,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.4); o.start(t); o.stop(t+0.5); };
+    // bell gain for chimes
+    bellGain = ctx.createGain(); bellGain.gain.value = 0;
+    bellGain.connect(master);
+    // small sfx generator helper: click, ding, coin, error
+    sfx.click = ()=>{ const g = ctx.createGain(); g.gain.value = 0.0001; const o = ctx.createOscillator(); o.type='square'; o.frequency.value = 1200; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.06,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.15); o.start(t); o.stop(t+0.16); };
+    sfx.page = ()=>{ const g=ctx.createGain(); g.gain.value=0.0001; const o=ctx.createOscillator(); o.type='triangle'; o.frequency.value=400; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.05,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.8); o.start(t); o.stop(t+0.9); };
+    sfx.ding = ()=>{ const g=ctx.createGain(); g.gain.value=0.0001; const o=ctx.createOscillator(); o.type='sine'; o.frequency.value=880; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.08,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.6); o.start(t); o.stop(t+0.7); };
+    sfx.coin = ()=>{ const g=ctx.createGain(); g.gain.value=0.0001; const o=ctx.createOscillator(); o.type='square'; o.frequency.value=600; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.08,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.5); o.start(t); o.stop(t+0.6); };
+    sfx.error = ()=>{ const g=ctx.createGain(); g.gain.value=0.0001; const o=ctx.createOscillator(); o.type='sawtooth'; o.frequency.value=220; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.06,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.4); o.start(t); o.stop(t+0.5); };
   }
   function start(){ if (!ctx) init(); if (!ctx) return; master.gain.setTargetAtTime(0.12, ctx.currentTime, 0.5); scheduleBell(); }
   function scheduleBell(){ if (!ctx) return; const when = ctx.currentTime + 6 + Math.random()*8; const o = ctx.createOscillator(); const g = ctx.createGain(); o.type='sine'; o.frequency.value = 440*(0.5+Math.random()); o.connect(g); g.connect(master); g.gain.setValueAtTime(0.0001, when); g.gain.exponentialRampToValueAtTime(0.08, when+0.02); g.gain.exponentialRampToValueAtTime(0.0001, when+1.4); o.start(when); o.stop(when+1.6); setTimeout(scheduleBell, (6000+Math.random()*8000)); }
@@ -185,62 +203,496 @@ const AudioEngine = (function(){
   return { init, start, mute, resume, sfx };
 })();
 
-// UI helpers
+// Update UI helper
 function refreshUI(){ updateBadges(); }
-function showNews(){ const idx = (STATE.day-1) % NEWS.length; const n = NEWS[idx]; newsHeadline.textContent = n.headline; newsByline.textContent = n.byline; newsBody.textContent = n.text; newsSvg.innerHTML = n.svg; pagerFill.style.width = '0%'; newsModal.style.display = 'flex'; let pct=0; const id=setInterval(()=>{ pct=Math.min(100,pct+3); pagerFill.style.width=pct+'%'; if (pct>=100) clearInterval(id); },60); AudioEngine.sfx && AudioEngine.sfx.page(); }
-newsContinue.addEventListener('click', ()=>{ AudioEngine.sfx && AudioEngine.sfx.page(); newsModal.style.display='none'; startShift(); });
-newsClose.addEventListener('click', ()=>{ AudioEngine.sfx && AudioEngine.sfx.page(); newsModal.style.display='none'; startShift(); });
 
-// Back button simple history
+// Start game: show news fullscreen at day start
+function startGame(){ // initialize audio
+  Audio.init(); Audio.start();
+  showNews(); document.getElementById('startBtn').style.display='none'; }
+
+// Show full-screen news modal
+let newsIndex = 0;
+function showNews(){ newsIndex = (STATE.day-1) % NEWS.length; const n = NEWS[newsIndex]; newsHeadline.textContent = n.headline; newsByline.textContent = n.byline; newsBody.textContent = n.text; newsSvg.innerHTML = n.svg; pagerFill.style.width = '0%'; newsModal.style.display = 'flex'; // animate pager
+  let pct=0; const id = setInterval(()=>{ pct = Math.min(100, pct+3); pagerFill.style.width = pct + '%'; if (pct>=100) clearInterval(id); }, 60); Audio.sfx && Audio.sfx.page(); }
+
+// News continue
+newsContinue.addEventListener('click', ()=>{ Audio.sfx && Audio.sfx.page(); newsModal.style.display='none'; startShift(); });
+newsClose.addEventListener('click', ()=>{ Audio.sfx && Audio.sfx.page(); newsModal.style.display='none'; startShift(); });
+
+// Back button: go back one screen (simple history stack)
 const HISTORY = [];
-backBtn.addEventListener('click', ()=>{ AudioEngine.sfx && AudioEngine.sfx.click(); if (HISTORY.length){ const last = HISTORY.pop(); renderScreen(last); } else alert('No previous screen'); });
+backBtn.addEventListener('click', ()=>{ Audio.sfx && Audio.sfx.click(); if (HISTORY.length){ const last = HISTORY.pop(); renderScreen(last); } else { alert('No previous screen'); } });
 
-// Mute
-let muted=false; muteBtn.addEventListener('click', ()=>{ AudioEngine.resume(); muted = !muted; AudioEngine.mute(muted); muteBtn.textContent = muted ? 'Unmute' : 'Mute'; });
+// Mute/unmute
+let muted=false;
+muteBtn.addEventListener('click', ()=>{ Audio.resume(); muted = !muted; Audio.mute(muted); muteBtn.textContent = muted ? 'Unmute' : 'Mute'; });
 
-// Start button
-startBtn.addEventListener('click', ()=>{ startGame(); startBtn.style.display='none'; });
+// Start shift (orders)
+function startShift(){ STATE.ordersServed = 0; STATE.roundScore=0; renderOrder(); }
 
-function startGame(){ AudioEngine.init(); AudioEngine.start(); showNews(); refreshUI(); }
+function renderScreen(screen){ // restore known screens: 'news','order','task','feedback','shop'
+  if (screen === 'news') showNews();
+  if (screen === 'order') renderOrder();
+  if (screen === 'shop') renderShop();
+  if (screen === 'task') renderTask();
+  if (screen === 'feedback') renderFeedback();
+}
 
-// Orders customization & generation
-function renderOrder(){ refreshUI(); const pool=[{text:'Preserve a small bird for display',type:'taxidermy'},{text:'Make a mourning doll (family lock of hair)',type:'doll'},{text:'Mount a fox for exhibit',type:'taxidermy'},{text:'Assemble a reborn therapy doll',type:'doll'}]; const ord=pick(pool); main.innerHTML = `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="title-sm">${ord.type==='taxidermy'?'Taxidermy Order':'Doll Order'}</div><div class="muted" style="margin-top:6px">${ord.text}</div></div><div class="muted">Client: ${ord.type==='taxidermy'?'Museum/Collector':'Family/Therapist'}</div></div><div style="margin-top:12px" class="grid"><div class="orderBox"><div class="small">Customize this order (materials & details)</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><label><input type="checkbox" id="optHair"> Real hair</label><label><input type="checkbox" id="optTeeth"> Real teeth</label><label><input type="checkbox" id="optGlass"> Glass eyes</label><label><input type="checkbox" id="optCloth"> Cloth body</label></div><div style="display:flex;gap:8px;align-items:center;margin-top:8px"><div class="small">Difficulty</div><input id="difficultyRange" type="range" min="1" max="3" value="1"></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button class="btn" id="btnCustomize">Accept (custom)</button></div></div></div></div>`; document.getElementById('btnCustomize').onclick = ()=>{ const opts={hair:!!document.getElementById('optHair').checked, teeth:!!document.getElementById('optTeeth').checked, glass:!!document.getElementById('optGlass').checked, cloth:!!document.getElementById('optCloth').checked, difficulty:+document.getElementById('difficultyRange').value}; STATE.currentOrder={base:ord,options:opts}; HISTORY.push('order'); AudioEngine.sfx && AudioEngine.sfx.click(); prepareTasksForOrder(ord.type, opts); }; }
+// Render order with customization options
+function renderOrder(){ refreshUI(); // pick a base order but allow customization
+  const basePool = [
+    {text:'Preserve a small bird for display', type:'taxidermy'},
+    {text:'Create a mourning doll (family lock of hair)', type:'doll'},
+    {text:'Mount a fox for the exhibit', type:'taxidermy'},
+    {text:'Assemble a reborn therapy doll', type:'doll'}
+  ];
+  const ord = pick(basePool);
+  main.innerHTML = `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="title-sm">${ord.type==='taxidermy'?'Taxidermy Order':'Doll Order'}</div><div class="muted" style="margin-top:6px">${ord.text}</div></div><div class="muted">Client: ${ord.type==='taxidermy'?'Museum/Collector':'Family/Therapist'}</div></div><div style="margin-top:12px" class="grid"><div class="orderBox"><div class="small">Customize this order (materials & details)</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><label><input type="checkbox" id="optHair"> Real hair</label><label><input type="checkbox" id="optTeeth"> Real teeth</label><label><input type="checkbox" id="optGlass"> Glass eyes</label><label><input type="checkbox" id="optCloth"> Cloth body</label></div><div style="display:flex;gap:8px;align-items:center;margin-top:8px"><div class="small">Difficulty</div><input id="difficultyRange" type="range" min="1" max="3" value="1"></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button class="btn" id="btnCustomize">Accept (custom)</button></div></div></div></div>`;
+  document.getElementById('btnCustomize').onclick = ()=>{
+    const opts = {hair:!!document.getElementById('optHair').checked, teeth:!!document.getElementById('optTeeth').checked, glass:!!document.getElementById('optGlass').checked, cloth:!!document.getElementById('optCloth').checked, difficulty:+document.getElementById('difficultyRange').value};
+    STATE.currentOrder = {base: ord, options: opts};
+    HISTORY.push('order');
+    Audio.sfx && Audio.sfx.click();
+    prepareTasksForOrder(ord.type, opts);
+  };
+}
 
-function prepareTasksForOrder(type, opts){ let seq=[]; if (type==='taxidermy'){ seq.push('Stuffing'); if (opts.cloth) seq.push('Line/Pad'); seq.push('Sew Balance'); if (opts.glass) seq.push('Install Glass Eyes'); seq.push('Paint Details'); if (opts.hair) seq.push('Attach Hair'); } else { seq.push('Implant Hair'); if (opts.teeth) seq.push('Insert Teeth'); if (opts.glass) seq.push('Place Glass Eyes'); seq.push('Tone & Blush'); } STATE._seq = seq; STATE._step = 0; STATE._stepScore = 0; renderTask(); }
+// Prepare task sequence based on customization
+function prepareTasksForOrder(type, opts){
+  let seq = [];
+  if (type==='taxidermy'){
+    seq.push('Stuffing');
+    if (opts.cloth) seq.push('Line/Pad'); // alternative
+    seq.push('Sew Balance');
+    if (opts.glass) seq.push('Install Glass Eyes');
+    seq.push('Paint Details');
+    if (opts.hair) seq.push('Attach Hair (rare)');
+  } else {
+    seq.push('Implant Hair');
+    if (opts.teeth) seq.push('Insert Teeth');
+    if (opts.glass) seq.push('Place Glass Eyes');
+    seq.push('Tone & Blush');
+  }
+  // adjust difficulty influence on scoring
+  STATE._seq = seq;
+  STATE._step = 0;
+  STATE._stepScore = 0;
+  renderTask();
+}
 
-function renderTask(){ refreshUI(); const step = STATE._seq[STATE._step]; main.innerHTML = `<div class="card"><div class="title-sm">${step}</div><div class="muted" style="margin-top:8px">Complete the mini-game below</div><div id="mini" style="margin-top:12px"></div><div id="progressWrap" style="margin-top:12px"></div></div>`; const host = document.getElementById('mini'); if (step==='Stuffing') mini_dragfill(host); else if (step==='Sew Balance') mini_balance(host); else if (step==='Paint Details' || step==='Tone & Blush') mini_clickpaint(host); else if (step==='Implant Hair' || step==='Attach Hair') mini_hairgrid(host); else if (step==='Place Glass Eyes' || step==='Install Glass Eyes') mini_dragplace(host); else if (step==='Insert Teeth') mini_insertteeth(host); else host.innerHTML='<div class="muted">No task</div>'; }
+// Render current task (mini-games)
+function renderTask(){ refreshUI(); const step = STATE._seq[STATE._step]; main.innerHTML = `<div class="card"><div class="title-sm">${step}</div><div class="muted" style="margin-top:8px">Complete the mini-game below</div><div id="mini" style="margin-top:12px"></div><div id="progressWrap" style="margin-top:12px"></div></div>`; const host = document.getElementById('mini'); if (step==='Stuffing') mini_dragfill(host); else if (step==='Sew Balance') mini_balance(host); else if (step==='Paint Details' || step==='Tone & Blush') mini_clickpaint(host); else if (step==='Implant Hair') mini_hairgrid(host); else if (step==='Place Glass Eyes' || step==='Install Glass Eyes' || step==='Place Glass Eyes') mini_dragplace(host); else if (step==='Insert Teeth') mini_insertteeth(host); else if (step==='Attach Hair (rare)') mini_hairgrid(host); else { host.innerHTML='<div class=\"muted\">No task</div>'; } }
 
-// Mini-games implementations
-function mini_dragfill(host){ host.innerHTML = `<div style="display:flex;gap:20px;align-items:center;justify-content:center"><div style="display:grid;grid-template-columns:repeat(5,48px);gap:10px">${Array.from({length:10}).map(()=>'<div draggable="true" class="token">🧶</div>').join('')}</div><div class="dropzone" id="drop">🦊</div><div class="muted">Placed: <span id="placed">0</span>/10</div></div>`; let placed=0; host.querySelectorAll('.token').forEach(t=> t.addEventListener('dragstart', e=> e.dataTransfer.setData('text','1'))); const drop = host.querySelector('#drop'); const placedEl = host.querySelector('#placed'); drop.addEventListener('dragover', e=> e.preventDefault()); drop.addEventListener('drop', e=>{ e.preventDefault(); placed=clamp(placed+1,0,10); placedEl.textContent=placed; AudioEngine.sfx && AudioEngine.sfx.click(); if (placed>=10){ const raw=clamp(20 - (placed-10)*2, 10, 20); finishStep(raw); } }); }
+// Mini-games (implementations)
+function mini_dragfill(host){
+  host.innerHTML = `<div style="display:flex;gap:20px;align-items:center;justify-content:center"><div style="display:grid;grid-template-columns:repeat(5,48px);gap:10px">${Array.from({length:10}).map(()=>'<div draggable="true" class="token">🧶</div>').join('')}</div><div class="dropzone" id="drop">🦊</div><div class="muted">Placed: <span id="placed">0</span>/10</div></div>`;
+  let placed=0; host.querySelectorAll('.token').forEach(t=> t.addEventListener('dragstart', e=> e.dataTransfer.setData('text','1')));
+  const drop = host.querySelector('#drop'); const placedEl = host.querySelector('#placed');
+  drop.addEventListener('dragover', e=> e.preventDefault()); drop.addEventListener('drop', e=>{ e.preventDefault(); placed=clamp(placed+1,0,10); placedEl.textContent=placed; Audio.sfx && Audio.sfx.click(); if (placed>=10){ const raw=clamp(20 - (placed-10)*2, 10, 20); finishStep(raw); } });
+}
 
-function mini_balance(host){ host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:12px"><div class="bar" style="width:420px"><div id="fill" style="width:0"></div></div><button class="btn" id="stopBtn">Stop Sewing</button></div>`; const fill = host.querySelector('#fill'); const stop = host.querySelector('#stopBtn'); let v=0,dir=1; const id = setInterval(()=>{ v += dir*6; if (v>=100){v=100;dir=-1} if (v<=0){v=0;dir=1} fill.style.width=v+'%'; },120); stop.onclick = ()=>{ clearInterval(id); const diff=Math.abs(50-v); const raw=clamp(20 - Math.round(diff/3), 0, 20); AudioEngine.sfx && AudioEngine.sfx.click(); finishStep(raw); }; }
+function mini_balance(host){
+  host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:12px"><div class="bar" style="width:420px"><div id="fill" style="width:0"></div></div><button class="btn" id="stopBtn">Stop Sewing</button></div>`;
+  const fill = host.querySelector('#fill'); const stop = host.querySelector('#stopBtn');
+  let v=0,dir=1; const id = setInterval(()=>{ v += dir*6; if (v>=100){v=100;dir=-1} if (v<=0){v=0;dir=1} fill.style.width=v+'%'; },120);
+  stop.onclick = ()=>{ clearInterval(id); const diff=Math.abs(50-v); const raw=clamp(20 - Math.round(diff/3), 0, 20); Audio.sfx && Audio.sfx.click(); finishStep(raw); };
+}
 
-function mini_clickpaint(host){ host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div class="muted">Layer paint: <span id="pct">0</span>%</div><div class="bar" style="width:420px"><div id="barFill" style="width:0;background:#f43f5e"></div></div><button class="btn btn-green" id="tap">Tap to Paint</button></div>`; const bar = host.querySelector('#barFill'); const pct = host.querySelector('#pct'); const tap = host.querySelector('#tap'); let n=0,taps=20; tap.onclick = ()=>{ n=clamp(n+1,0,taps); const p=Math.round((n/taps)*100); bar.style.width=p+'%'; pct.textContent=p; AudioEngine.sfx && AudioEngine.sfx.click(); if (n>=taps){ const raw=18 + Math.floor(Math.random()*3); AudioEngine.sfx && AudioEngine.sfx.ding(); finishStep(raw); } }; }
+function mini_clickpaint(host){
+  host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div class="muted">Layer paint: <span id="pct">0</span>%</div><div class="bar" style="width:420px"><div id="barFill" style="width:0;background:#f43f5e"></div></div><button class="btn btn-green" id="tap">Tap to Paint</button></div>`;
+  const bar = host.querySelector('#barFill'); const pct = host.querySelector('#pct'); const tap = host.querySelector('#tap'); let n=0,taps=20;
+  tap.onclick = ()=>{ n=clamp(n+1,0,taps); const p=Math.round((n/taps)*100); bar.style.width=p+'%'; pct.textContent=p; Audio.sfx && Audio.sfx.click(); if (n>=taps){ const raw=18 + Math.floor(Math.random()*3); Audio.sfx && Audio.sfx.ding(); finishStep(raw); } };
+}
 
-function mini_hairgrid(host){ host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><div class="grid5" id="grid">${Array.from({length:25}).map((_,i)=>`<div class="cell" data-i="${i}"></div>`).join('')}</div><div class="muted">Follicles: <span id="count">0</span> / target 12</div><div style="margin-top:8px"><button class="btn btn-green" id="finishHair" disabled>Finish Implanting</button></div></div>`; const cells = host.querySelectorAll('.cell'); const countEl = host.querySelector('#count'); const finish = host.querySelector('#finishHair'); let set=new Set(); cells.forEach(c=> c.addEventListener('click', ()=>{ const i=+c.dataset.i; if (set.has(i)){ set.delete(i); c.classList.remove('on'); c.style.background='#f59e0b' } else { set.add(i); c.classList.add('on'); c.style.background='#111827' } countEl.textContent=set.size; finish.disabled = !(set.size>=11 && set.size<=13); finish.dataset.pts = clamp(20 - Math.abs(set.size-12)*3, 10, 20); AudioEngine.sfx && AudioEngine.sfx.click(); })); finish.onclick = ()=>{ AudioEngine.sfx && AudioEngine.sfx.ding(); finishStep(+finish.dataset.pts || 15); }; }
+function mini_hairgrid(host){
+  host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><div class="grid5" id="grid">${Array.from({length:25}).map((_,i)=>`<div class="cell" data-i="${i}"></div>`).join('')}</div><div class="muted">Follicles: <span id="count">0</span> / target 12</div><div style="margin-top:8px"><button class="btn btn-green" id="finishHair" disabled>Finish Implanting</button></div></div>`;
+  const cells = host.querySelectorAll('.cell'); const countEl = host.querySelector('#count'); const finish = host.querySelector('#finishHair'); let set=new Set();
+  cells.forEach(c=> c.addEventListener('click', ()=>{ const i=+c.dataset.i; if (set.has(i)){ set.delete(i); c.classList.remove('on'); c.style.background='#f59e0b' } else { set.add(i); c.classList.add('on'); c.style.background='#111827' } countEl.textContent=set.size; finish.disabled = !(set.size>=11 && set.size<=13); finish.dataset.pts = clamp(20 - Math.abs(set.size-12)*3, 10, 20); Audio.sfx && Audio.sfx.click(); }));
+  finish.onclick = ()=>{ Audio.sfx && Audio.sfx.ding(); finishStep(+finish.dataset.pts || 15); };
+}
 
-function mini_dragplace(host){ host.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;gap:14px"><div style="display:flex;flex-direction:column;gap:8px"><div class="token" draggable="true">👁️</div><div class="token" draggable="true">👁️</div></div><div style="display:flex;gap:8px;align-items:center"><div class="socket" id="l"></div><div class="socket" id="r"></div></div></div>`; const tokens = host.querySelectorAll('.token'); tokens.forEach(t=> t.addEventListener('dragstart', e=> e.dataTransfer.setData('text','eye'))); const left = host.querySelector('#l'), right = host.querySelector('#r'); let L=false,R=false; [left,right].forEach(el=>{ el.addEventListener('dragover', e=> e.preventDefault()); el.addEventListener('drop', e=>{ e.preventDefault(); if (el===left && !L){ L=true; el.textContent='✅'; el.style.borderColor='#34d399' } else if (el===right && !R){ R=true; el.textContent='✅'; el.style.borderColor='#34d399' } AudioEngine.sfx && AudioEngine.sfx.click(); if (L && R){ AudioEngine.sfx && AudioEngine.sfx.ding(); const raw = 18 + Math.floor(Math.random()*3); finishStep(raw); } }); }); }
+function mini_dragplace(host){
+  host.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;gap:14px"><div style="display:flex;flex-direction:column;gap:8px"><div class="token" draggable="true">👁️</div><div class="token" draggable="true">👁️</div></div><div style="display:flex;gap:8px;align-items:center"><div class="socket" id="l"></div><div class="socket" id="r"></div></div></div>`;
+  const tokens = host.querySelectorAll('.token'); tokens.forEach(t=> t.addEventListener('dragstart', e=> e.dataTransfer.setData('text','eye')));
+  const left = host.querySelector('#l'), right = host.querySelector('#r'); let L=false,R=false;
+  [left,right].forEach(el=>{ el.addEventListener('dragover', e=> e.preventDefault()); el.addEventListener('drop', e=>{ e.preventDefault(); if (el===left && !L){ L=true; el.textContent='✅'; el.style.borderColor='#34d399' } else if (el===right && !R){ R=true; el.textContent='✅'; el.style.borderColor='#34d399' } Audio.sfx && Audio.sfx.click(); if (L && R){ Audio.sfx && Audio.sfx.ding(); const raw = 18 + Math.floor(Math.random()*3); finishStep(raw); } }); });
+}
 
-function mini_insertteeth(host){ host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div class="muted">Insert teeth by dragging into sockets</div><div style="display:flex;gap:12px;align-items:center"><div class="token" draggable="true">🦷</div><div class="socket" id="toothSocket"></div></div><div style="margin-top:8px"><button class="btn" id="finishTeeth" disabled>Finish</button></div></div>`; const tok = host.querySelector('.token'); const sock = host.querySelector('#toothSocket'); let filled=false; tok.addEventListener('dragstart', e=> e.dataTransfer.setData('text','tooth')); sock.addEventListener('dragover', e=> e.preventDefault()); sock.addEventListener('drop', e=>{ e.preventDefault(); filled=true; sock.textContent='✅'; sock.style.borderColor='#34d399'; document.getElementById('finishTeeth').disabled=false; AudioEngine.sfx && AudioEngine.sfx.click(); }); document.getElementById('finishTeeth').onclick = ()=>{ AudioEngine.sfx && AudioEngine.sfx.ding(); finishStep(16); }; }
+function mini_insertteeth(host){
+  host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div class="muted">Insert teeth by dragging into sockets</div><div style="display:flex;gap:12px;align-items:center"><div class="token" draggable="true">🦷</div><div class="socket" id="toothSocket"></div></div><div style="margin-top:8px"><button class="btn" id="finishTeeth" disabled>Finish</button></div></div>`;
+  const tok = host.querySelector('.token'); const sock = host.querySelector('#toothSocket'); let filled=false; tok.addEventListener('dragstart', e=> e.dataTransfer.setData('text','tooth')); sock.addEventListener('dragover', e=> e.preventDefault()); sock.addEventListener('drop', e=>{ e.preventDefault(); filled=true; sock.textContent='✅'; sock.style.borderColor='#34d399'; document.getElementById('finishTeeth').disabled=false; Audio.sfx && Audio.sfx.click(); }); document.getElementById('finishTeeth').onclick = ()=>{ Audio.sfx && Audio.sfx.ding(); finishStep(16); };
+}
 
-// finish step scoring
+// finish step and scoring
 function finishStep(raw){ let bonus=0; if (STATE.owned['glassEyes']) bonus+=5; if (STATE.owned['premiumHair']) bonus+=5; if (STATE.owned['qualityThread']) bonus+=5; if (STATE.owned['safeChem']) bonus+=5; const p=clamp(raw+bonus,0,20); STATE.roundScore = (STATE.roundScore||0) + p; STATE._step++; if (STATE._step < STATE._seq.length){ renderTask(); } else { STATE.ordersServed++; const diffPenalty = Math.min(15,(STATE.day-1)*3); const finalScore = clamp((STATE.roundScore||0) - diffPenalty, 0, 60); STATE.roundScore = finalScore; const stars = finalScore >=45 ? 3 : finalScore >=28 ? 2 : 1; STATE.stars = stars; STATE.rep += stars; const coinGain = stars*10 + Math.floor(finalScore/10); STATE.coins += coinGain; renderFeedback(); } updateBadges(); }
 
 function renderFeedback(){ updateBadges(); const starsHtml = '★'.repeat(STATE.stars) + '<span class="muted">' + '★'.repeat(3-STATE.stars) + '</span>'; main.innerHTML = `<div class="card center"><div class="title-sm">Delivery Feedback</div><div style="font-size:28px;margin:10px 0">${starsHtml}</div><div class="muted" style="margin-bottom:8px">You earned ${STATE.coins} coins (total) · Rep ${STATE.rep}</div><div style="margin-top:10px"><button class="btn btn-green" id="nextOrd">Next</button></div></div>`; document.getElementById('nextOrd').onclick = ()=>{ STATE._seq=null; STATE._step=0; STATE.roundScore=0; if (STATE.ordersServed >= STATE.ordersNeeded) showQuiz(); else renderOrder(); }; }
 
-function showQuiz(){ updateBadges(); const qset = QUIZZES[Math.min(STATE.day, Object.keys(QUIZZES).length)]; main.innerHTML = `<div class="card"><div class="title-sm">End of Day Quiz</div><div class="muted" style="margin-top:8px">Answer to earn bonus coins and unlock items.</div><div id="quizArea" style="margin-top:12px"></div><div style="margin-top:12px"><button class="btn btn-amber" id="submitQuiz">Submit Answers</button></div></div>`; const area = document.getElementById('quizArea'); qset.forEach((q,i)=>{ const block = document.createElement('div'); block.innerHTML = `<div style="font-weight:700;margin-bottom:6px">${i+1}. ${q.q}</div>` + q.opts.map((o,j)=>`<label class="quizOpt"><input type="radio" name="q${i}" value="${j}" /> ${o}</label>`).join(''); area.appendChild(block); }); document.getElementById('submitQuiz').onclick = ()=> submitQuiz(qset); AudioEngine.sfx && AudioEngine.sfx.page(); }
+function showQuiz(){ updateBadges(); const qset = QUIZZES[Math.min(STATE.day, Object.keys(QUIZZES).length)]; main.innerHTML = `<div class="card"><div class="title-sm">End of Day Quiz</div><div class="muted" style="margin-top:8px">Answer to earn bonus coins and unlock items.</div><div id="quizArea" style="margin-top:12px"></div><div style="margin-top:12px"><button class="btn btn-amber" id="submitQuiz">Submit Answers</button></div></div>`; const area = document.getElementById('quizArea'); qset.forEach((q,i)=>{ const block = document.createElement('div'); block.innerHTML = `<div style="font-weight:700;margin-bottom:6px">${i+1}. ${q.q}</div>` + q.opts.map((o,j)=>`<label class="quizOpt"><input type="radio" name="q${i}" value="${j}" /> ${o}</label>`).join(''); area.appendChild(block); }); document.getElementById('submitQuiz').onclick = ()=> submitQuiz(qset); Audio.sfx && Audio.sfx.page(); }
 
-function submitQuiz(qset){ let reward=0; const results=[]; qset.forEach((q,i)=>{ const sel = document.querySelector(`input[name='q${i}']:checked`); const chosen = sel ? parseInt(sel.value) : -1; const correct = chosen === q.a; results.push({q:q.q,correct}); if (correct) reward+=15; }); STATE.coins += reward; if (STATE.coins >= 50 && !STATE.owned['glassEyes']) STATE.owned['glassEyes']=true; main.innerHTML = `<div class="card center"><div class="title-sm">Quiz Results</div><div class="muted" style="margin-top:8px">You earned ${reward} bonus coins.</div><div style="text-align:left;margin-top:10px">${results.map(r=>`<div>${r.correct? '✅' : '❌'} ${r.q}</div>`).join('')}</div><div style="margin-top:12px"><button class="btn btn-green" id="toShop">Go to Shop</button></div></div>`; document.getElementById('toShop').onclick = renderShop; AudioEngine.sfx && AudioEngine.sfx.ding(); updateBadges(); }
+function submitQuiz(qset){ let reward=0; const results=[]; qset.forEach((q,i)=>{ const sel = document.querySelector(`input[name='q${i}']:checked`); const chosen = sel ? parseInt(sel.value) : -1; const correct = chosen === q.a; results.push({q:q.q,correct}); if (correct) reward+=15; }); STATE.coins += reward; if (STATE.coins >= 50 && !STATE.owned['glassEyes']) STATE.owned['glassEyes'] = true; main.innerHTML = `<div class="card center"><div class="title-sm">Quiz Results</div><div class="muted" style="margin-top:8px">You earned ${reward} bonus coins.</div><div style="text-align:left;margin-top:10px">${results.map(r=>`<div>${r.correct? '✅' : '❌'} ${r.q}</div>`).join('')}</div><div style="margin-top:12px"><button class="btn btn-green" id="toShop">Go to Shop</button></div></div>`; document.getElementById('toShop').onclick = renderShop; Audio.sfx && Audio.sfx.ding(); updateBadges(); }
 
-function renderShop(){ updateBadges(); main.innerHTML = `<div class="card"><div class="title-sm">Workshop Shop</div><div class="muted" style="margin-top:8px">Spend coins on upgrades.</div><div class="shopGrid" style="margin-top:12px">${SHOP.map(it=>`<div class="shopItem"><div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">${it.icon} ${it.name}</div><div class="muted">${it.cost}c</div></div><div class="muted" style="margin-top:6px">${it.desc}</div><div style="margin-top:8px"><button class="btn btn-amber" data-id="${it.id}">${STATE.owned[it.id] ? 'Owned' : 'Buy'}</button></div></div>`).join('')}</div><div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn" id="nextDay">Next Day</button></div></div>`; document.querySelectorAll('[data-id]').forEach(b=> b.addEventListener('click',(e)=>{ const id=e.currentTarget.dataset.id; const it=SHOP.find(x=>x.id===id); if (STATE.owned[id]) return alert('Already owned'); if (STATE.coins < it.cost) return alert('Not enough coins'); STATE.coins -= it.cost; STATE.owned[id]=true; renderShop(); AudioEngine.sfx && AudioEngine.sfx.coin(); })); document.getElementById('nextDay').onclick = ()=>{ STATE.day++; STATE.ordersServed=0; STATE.roundScore=0; showNews(); updateBadges(); }; AudioEngine.sfx && AudioEngine.sfx.page(); }
+function renderShop(){ updateBadges(); main.innerHTML = `<div class="card"><div class="title-sm">Workshop Shop</div><div class="muted" style="margin-top:8px">Spend coins on upgrades.</div><div class="shopGrid" style="margin-top:12px">${SHOP.map(it=>`<div class="shopItem"><div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">${it.icon} ${it.name}</div><div class="muted">${it.cost}c</div></div><div class="muted" style="margin-top:6px">${it.desc}</div><div style="margin-top:8px"><button class="btn btn-amber" data-id="${it.id}">${STATE.owned[it.id] ? 'Owned' : 'Buy'}</button></div></div>`).join('')}</div><div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn" id="nextDay">Next Day</button></div></div>`; document.querySelectorAll('[data-id]').forEach(b=> b.addEventListener('click',(e)=>{ const id=e.currentTarget.dataset.id; const it=SHOP.find(x=>x.id===id); if (STATE.owned[id]) return alert('Already owned'); if (STATE.coins < it.cost) return alert('Not enough coins'); STATE.coins -= it.cost; STATE.owned[id]=true; renderShop(); Audio.sfx && Audio.sfx.coin(); })); document.getElementById('nextDay').onclick = ()=>{ STATE.day++; STATE.ordersServed=0; STATE.roundScore=0; showNews(); updateBadges(); }; Audio.sfx && Audio.sfx.page(); }
 
-// initial landing
+// start game button
+startBtn.addEventListener('click', ()=>{ startGame(); Audio.resume(); startBtn.style.display='none'; });
+
+// initial state
 updateBadges();
-main.innerHTML = `<div class="card center"><div class="title-sm">Welcome</div><div class="muted" style="margin-top:8px">Press Start to begin. Read the news each morning and complete orders to learn about the crafts.</div><div style="margin-top:12px"><button class="btn btn-green" onclick="renderOrder()">Quick Start Order</button></div></div>`;
+main.innerHTML = `<div class="card center"><div class="title-sm">Welcome</div><div class="muted" style="margin-top:8px">Press Start to begin. Read the news each morning and complete orders to learn about the crafts.</div></div>`;
 
-// expose some functions for debugging
+// expose globals for debug
 window.STATE = STATE;
-window.renderOrder = renderOrder;
+window.startGame = startGame;
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Crafting Life — Final Complete Version</title>
+<style>
+:root{
+  --bg1:#fff8f0; --bg2:#fff3e8; --card:#fffdfa; --ink:#222;
+  --muted:#6b6b6b; --accent:#3b3b3b; --sepia:#8b5e3c; --good:#10b981; --amber:#f59e0b;
+  --overlay: rgba(17,17,23,0.85);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--ink);height:100vh;overflow:hidden}
+.app{display:flex;flex-direction:column;height:100vh}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #efe3d2;background:linear-gradient(90deg,#fffaf0,#fff3e8)}
+.title{font-weight:800;font-size:18px}
+.controls{display:flex;gap:8px;align-items:center}
+.badge{background:#111827;color:#fffbeb;padding:6px 10px;border-radius:999px;font-size:13px}
+.content{flex:1;overflow:auto;padding:18px}
+.card{background:var(--card);border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:14px;box-shadow:0 8px 18px rgba(15,15,15,0.06)}
+.grid{display:grid;gap:14px}
+.cols-3{grid-template-columns:1fr 320px 220px}
+.center{text-align:center}
+.muted{color:var(--muted);font-size:13px}
+.title-sm{font-weight:700;font-size:15px}
+.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:10px;border:none;cursor:pointer}
+.btn-amber{background:var(--amber);color:#111827}
+.btn-green{background:var(--good);color:white}
+.small{font-size:13px;color:var(--muted)}
+.newsFull{position:fixed;inset:0;background:var(--overlay);display:flex;align-items:center;justify-content:center;z-index:60}
+.newsCard{width:92%;max-width:1000px;background:#fffaf0;border-radius:12px;padding:22px;display:flex;gap:18px;box-shadow:0 18px 40px rgba(0,0,0,0.4);align-items:center}
+.newsImg{flex:0 0 360px;height:240px;border-radius:8px;overflow:hidden;background:linear-gradient(180deg,#f0e6d9,#e6d6bb);display:flex;align-items:center;justify-content:center}
+.newsText{flex:1;text-align:left}
+.headline{font-size:28px;color:var(--sepia);font-weight:900;margin:0 0 6px 0}
+.byline{font-size:13px;color:var(--muted);margin-bottom:10px}
+.pager{height:8px;background:#eee;border-radius:999px;overflow:hidden;margin-top:10px}
+.pager > div{height:100%;background:#f59e0b;width:0%}
+.overlayClose{position:absolute;right:18px;top:18px;background:transparent;border:2px solid #fff;color:#fff;padding:6px 8px;border-radius:8px;cursor:pointer}
+.footerbar{position:fixed;left:0;right:0;bottom:0;background:#fff9ef;padding:8px 18px;border-top:1px solid #efe1c9;display:flex;justify-content:space-between;align-items:center;z-index:50}
+.workspace{display:flex;gap:14px;align-items:flex-start}
+.leftCol{flex:1}
+.rightCol{width:320px}
+.orderBox{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:10px;border:1px dashed #e6d6c2;background:#fff}
+.iconGrid{display:flex;gap:8px;flex-wrap:wrap}
+.icon{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px;border-radius:8px;background:#fff;width:88px;border:1px solid #eee}
+.token{width:44px;height:44px;border-radius:999px;background:#fcd34d;display:flex;align-items:center;justify-content:center;cursor:grab;box-shadow:0 6px 10px rgba(0,0,0,.12);font-size:20px}
+.dropzone{width:180px;height:180px;border-radius:16px;border:4px dashed #9ca3af;display:flex;align-items:center;justify-content:center;font-size:56px;background:#fff}
+.grid5{display:grid;grid-template-columns:repeat(5,24px);gap:8px;background:#fde68a;padding:12px;border-radius:12px}
+.cell{width:24px;height:24px;border-radius:999px;background:#f59e0b;border:1px solid #00000010;cursor:pointer}
+.cell.on{background:#111827}
+.socket{width:64px;height:64px;border-radius:999px;border:4px dashed #9ca3af;background:#fff;display:flex;align-items:center;justify-content:center;font-size:24px}
+.bar{height:14px;background:#e5e7eb;border-radius:999px;overflow:hidden}
+.bar>div{height:100%;background:#10b981;width:0%}
+.shopGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:10px}
+.shopItem{padding:10px;border-radius:10px;border:1px solid #efe3d2;background:#fff;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px;align-items:center}
+.backBtn{background:transparent;border:1px solid #111827;color:#111827;padding:6px 8px;border-radius:8px;cursor:pointer}
+.dayProgress{height:8px;background:#eee;border-radius:999px;overflow:hidden;margin-left:18px;flex:1}
+.dayProgress>div{height:100%;background:#10b981;width:0%}
+.fullscreenImg{width:100%;height:100%;object-fit:cover}
+.quizOpt{display:block;padding:10px 12px;margin:8px 0;border-radius:8px;border:1px solid #e6d9c6;background:#fff;cursor:pointer;text-align:left}
+@media (max-width:980px){ .cols-3{grid-template-columns:1fr} .newsImg{display:none} .newsCard{flex-direction:column} .rightCol{width:100%} }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="title">Crafting Life — Final</div>
+      <div class="small muted">Day</div>
+      <div class="badge" id="badge-day">1</div>
+      <div class="dayProgress" title="Day progress"><div id="dayProgressFill" style="width:0%"></div></div>
+    </div>
+    <div class="controls">
+      <div class="badge" id="badge-rep">Rep 0</div>
+      <div class="badge" id="badge-coins">Coins 0</div>
+      <button class="backBtn" id="backBtn">Back</button>
+      <button class="btn" id="muteBtn">Mute</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="main" class="grid"></div>
+  </div>
+
+  <div class="footerbar">
+    <div class="small">Read the news each morning — finish orders, take the quiz, unlock items.</div>
+    <div><button class="btn btn-amber" id="startBtn">Start Game</button></div>
+  </div>
+</div>
+
+<!-- Fullscreen news modal -->
+<div id="newsModal" class="newsFull" style="display:none">
+  <button class="overlayClose" id="newsClose">Continue</button>
+  <div class="newsCard">
+    <div class="newsImg" id="newsSvg"></div>
+    <div class="newsText">
+      <h2 class="headline" id="newsHeadline"></h2>
+      <div class="byline" id="newsByline"></div>
+      <div class="muted" id="newsBody"></div>
+      <div class="pager" style="margin-top:14px"><div id="pagerFill" style="width:0%"></div></div>
+      <div style="margin-top:12px"><button class="btn btn-green" id="newsContinue">Continue to Shift</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Final complete version script: music + SFX, fullscreen news, customizable orders, back button */
+// State
+const STATE = {
+  day: 1, coins: 0, rep: 0, owned: {}, ordersServed:0, ordersNeeded:3, currentOrder:null, roundScore:0, stars:0,
+  history: [] // store day results
+};
+
+// DOM refs
+const main = document.getElementById('main');
+const badgeDay = document.getElementById('badge-day');
+const badgeRep = document.getElementById('badge-rep');
+const badgeCoins = document.getElementById('badge-coins');
+const startBtn = document.getElementById('startBtn');
+const newsModal = document.getElementById('newsModal');
+const newsHeadline = document.getElementById('newsHeadline');
+const newsByline = document.getElementById('newsByline');
+const newsBody = document.getElementById('newsBody');
+const newsSvg = document.getElementById('newsSvg');
+const newsContinue = document.getElementById('newsContinue');
+const newsClose = document.getElementById('newsClose');
+const pagerFill = document.getElementById('pagerFill');
+const dayProgressFill = document.getElementById('dayProgressFill');
+const backBtn = document.getElementById('backBtn');
+const muteBtn = document.getElementById('muteBtn');
+
+// News items with inline SVG (cartoon-style)
+const NEWS = [
+  {headline:"Crafting Times — A Curious Craft Emerges", byline:"Taxidermy origins", text:"Taxidermy: from Greek 'taxis' (arrangement) and 'derma' (skin). Collectors and naturalists used it to study species.", svg:`
+    <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f7efe0"/><g transform="translate(20,10)"><ellipse cx="150" cy="170" rx="120" ry="36" fill="#e6d6bb"/><path d="M20 150 C70 40, 260 40, 320 150" fill="#f3e7d6" stroke="#8b5e3c" stroke-width="3"/><circle cx="120" cy="90" r="24" fill="#b86c39" stroke="#51260d" stroke-width="2"/><rect x="150" y="70" width="70" height="44" rx="8" fill="#d3b08a" stroke="#6b3f23"/><text x="6" y="230" font-size="10" fill="#6b3f23">Illustration: stylized mount</text></g></svg>`},
+  {headline:"Crafting Times — Dolls Too Real to Ignore", byline:"Victorian mourning", text:"Victorian dolls sometimes used real human hair or teeth to remember the dead — a practice that raises ethics questions today.", svg:`
+    <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#fff7f0"/><g transform="translate(20,10)"><rect x="20" y="16" width="180" height="160" rx="12" fill="#f3e0d6" stroke="#b86c39"/><circle cx="110" cy="80" r="42" fill="#fbeee8" stroke="#b86c39"/><circle cx="92" cy="72" r="6" fill="#2b2b2b"/><circle cx="128" cy="72" r="6" fill="#2b2b2b"/><path d="M92 110 C110 126, 130 126, 148 110" stroke="#c85e6a" stroke-width="4" fill="none"/><text x="6" y="220" font-size="10" fill="#6b3f23">Illustration: stylized mourning doll</text></g></svg>`},
+  {headline:"Crafting Times — Preserving Life & Memory", byline:"Ethics & museums", text:"Modern museums balance education and ethics: replicas and context are used to teach responsibly without glorifying harmful practices.", svg:`
+    <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f8f3ea"/><g transform="translate(10,10)"><rect x="10" y="14" width="120" height="110" rx="10" fill="#efe1d0" stroke="#c89b6b"/><rect x="190" y="24" width="140" height="80" rx="10" fill="#f6e9de" stroke="#b88a5a"/><circle cx="70" cy="68" r="34" fill="#d9b79a" stroke="#8b5e3c"/><circle cx="260" cy="56" r="26" fill="#fbeee8" stroke="#8b5e3c"/><text x="6" y="210" font-size="10" fill="#6b3f23">Illustration: museum case & doll</text></g></svg>`}
+];
+
+// Quiz bank per day
+const QUIZZES = {
+  1: [
+    {q:"What does 'taxidermy' literally mean?", opts:["Arrangement of skin","Toy making","Animal painting"], a:0},
+    {q:"Taxidermy became more popular in which era?", opts:["Victorian Era","Stone Age","Future"], a:0}
+  ],
+  2: [
+    {q:"Victorian dolls sometimes used which material?", opts:["Real hair","Plastic","LEDs"], a:0},
+    {q:"Why do museums use replicas?", opts:["Ethics & conservation","Costume","Tastes"], a:0}
+  ],
+  3: [
+    {q:"Modern taxidermy is often used for?", opts:["Education & conservation","Fashion","Cooking"], a:0},
+    {q:"Realistic dolls today are used in?", opts:["Therapy","Roadwork","Construction"], a:0}
+  ]
+};
+
+// Shop items
+const SHOP = [
+  {id:'glassEyes', name:'Premium Glass Eyes', cost:30, desc:'+5 realism on mounts & dolls', icon:'👁️'},
+  {id:'premiumHair', name:'Premium Mohair', cost:30, desc:'+5 hair score on dolls', icon:'💈'},
+  {id:'qualityThread', name:'Quality Thread', cost:25, desc:'+5 sewing / balance', icon:'✂️'},
+  {id:'safeChem', name:'Preservatives', cost:25, desc:'+5 preservation (taxidermy)', icon:'🧪'}
+];
+
+// Utility
+function $(sel){return document.querySelector(sel);}
+function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function updateBadges(){ badgeDay.textContent = STATE.day; badgeRep.textContent = STATE.rep; badgeCoins.textContent = STATE.coins; dayProgressFill.style.width = ((STATE.day-1)%7)/6*100 + '%'; }
+
+// --- Audio engine: museum-like music + SFX (WebAudio) ---
+const Audio = (function(){
+  let ctx, master, droneGain, bellGain;
+  let sfx = {};
+  function init(){
+    if (ctx) return;
+    try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){ console.warn('Audio not available'); return; }
+    master = ctx.createGain(); master.gain.value = 0.16; master.connect(ctx.destination);
+    // drone: two sawtooth-ish via oscillator + filter for warmth
+    droneGain = ctx.createGain(); droneGain.gain.value = 0.6;
+    const o1 = ctx.createOscillator(); o1.type='sine'; o1.frequency.value = 110;
+    const o2 = ctx.createOscillator(); o2.type='sine'; o2.frequency.value = 116.54;
+    const filt = ctx.createBiquadFilter(); filt.type='lowpass'; filt.frequency.value = 600;
+    o1.connect(droneGain); o2.connect(droneGain); droneGain.connect(filt); filt.connect(master);
+    o1.start(); o2.start();
+    // bell gain for chimes
+    bellGain = ctx.createGain(); bellGain.gain.value = 0;
+    bellGain.connect(master);
+    // small sfx generator helper: click, ding, coin, error
+    sfx.click = ()=>{ const g = ctx.createGain(); g.gain.value = 0.0001; const o = ctx.createOscillator(); o.type='square'; o.frequency.value = 1200; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.06,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.15); o.start(t); o.stop(t+0.16); };
+    sfx.page = ()=>{ const g=ctx.createGain(); g.gain.value=0.0001; const o=ctx.createOscillator(); o.type='triangle'; o.frequency.value=400; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.05,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.8); o.start(t); o.stop(t+0.9); };
+    sfx.ding = ()=>{ const g=ctx.createGain(); g.gain.value=0.0001; const o=ctx.createOscillator(); o.type='sine'; o.frequency.value=880; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.08,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.6); o.start(t); o.stop(t+0.7); };
+    sfx.coin = ()=>{ const g=ctx.createGain(); g.gain.value=0.0001; const o=ctx.createOscillator(); o.type='square'; o.frequency.value=600; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.08,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.5); o.start(t); o.stop(t+0.6); };
+    sfx.error = ()=>{ const g=ctx.createGain(); g.gain.value=0.0001; const o=ctx.createOscillator(); o.type='sawtooth'; o.frequency.value=220; o.connect(g); g.connect(master); const t=ctx.currentTime; g.gain.exponentialRampToValueAtTime(0.06,t+0.001); g.gain.exponentialRampToValueAtTime(0.0001,t+0.4); o.start(t); o.stop(t+0.5); };
+  }
+  function start(){ if (!ctx) init(); if (!ctx) return; master.gain.setTargetAtTime(0.12, ctx.currentTime, 0.5); scheduleBell(); }
+  function scheduleBell(){ if (!ctx) return; const when = ctx.currentTime + 6 + Math.random()*8; const o = ctx.createOscillator(); const g = ctx.createGain(); o.type='sine'; o.frequency.value = 440*(0.5+Math.random()); o.connect(g); g.connect(master); g.gain.setValueAtTime(0.0001, when); g.gain.exponentialRampToValueAtTime(0.08, when+0.02); g.gain.exponentialRampToValueAtTime(0.0001, when+1.4); o.start(when); o.stop(when+1.6); setTimeout(scheduleBell, (6000+Math.random()*8000)); }
+  function mute(flag){ if (!ctx) return; master.gain.setTargetAtTime(flag?0:0.12, ctx.currentTime, 0.05); }
+  function resume(){ if (!ctx) init(); if (!ctx) return; if (ctx.state==='suspended') ctx.resume(); }
+  return { init, start, mute, resume, sfx };
+})();
+
+// Update UI helper
+function refreshUI(){ updateBadges(); }
+
+// Start game: show news fullscreen at day start
+function startGame(){ // initialize audio
+  Audio.init(); Audio.start();
+  showNews(); document.getElementById('startBtn').style.display='none'; }
+
+// Show full-screen news modal
+let newsIndex = 0;
+function showNews(){ newsIndex = (STATE.day-1) % NEWS.length; const n = NEWS[newsIndex]; newsHeadline.textContent = n.headline; newsByline.textContent = n.byline; newsBody.textContent = n.text; newsSvg.innerHTML = n.svg; pagerFill.style.width = '0%'; newsModal.style.display = 'flex'; // animate pager
+  let pct=0; const id = setInterval(()=>{ pct = Math.min(100, pct+3); pagerFill.style.width = pct + '%'; if (pct>=100) clearInterval(id); }, 60); Audio.sfx && Audio.sfx.page(); }
+
+// News continue
+newsContinue.addEventListener('click', ()=>{ Audio.sfx && Audio.sfx.page(); newsModal.style.display='none'; startShift(); });
+newsClose.addEventListener('click', ()=>{ Audio.sfx && Audio.sfx.page(); newsModal.style.display='none'; startShift(); });
+
+// Back button: go back one screen (simple history stack)
+const HISTORY = [];
+backBtn.addEventListener('click', ()=>{ Audio.sfx && Audio.sfx.click(); if (HISTORY.length){ const last = HISTORY.pop(); renderScreen(last); } else { alert('No previous screen'); } });
+
+// Mute/unmute
+let muted=false;
+muteBtn.addEventListener('click', ()=>{ Audio.resume(); muted = !muted; Audio.mute(muted); muteBtn.textContent = muted ? 'Unmute' : 'Mute'; });
+
+// Start shift (orders)
+function startShift(){ STATE.ordersServed = 0; STATE.roundScore=0; renderOrder(); }
+
+function renderScreen(screen){ // restore known screens: 'news','order','task','feedback','shop'
+  if (screen === 'news') showNews();
+  if (screen === 'order') renderOrder();
+  if (screen === 'shop') renderShop();
+  if (screen === 'task') renderTask();
+  if (screen === 'feedback') renderFeedback();
+}
+
+// Render order with customization options
+function renderOrder(){ refreshUI(); // pick a base order but allow customization
+  const basePool = [
+    {text:'Preserve a small bird for display', type:'taxidermy'},
+    {text:'Create a mourning doll (family lock of hair)', type:'doll'},
+    {text:'Mount a fox for the exhibit', type:'taxidermy'},
+    {text:'Assemble a reborn therapy doll', type:'doll'}
+  ];
+  const ord = pick(basePool);
+  main.innerHTML = `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="title-sm">${ord.type==='taxidermy'?'Taxidermy Order':'Doll Order'}</div><div class="muted" style="margin-top:6px">${ord.text}</div></div><div class="muted">Client: ${ord.type==='taxidermy'?'Museum/Collector':'Family/Therapist'}</div></div><div style="margin-top:12px" class="grid"><div class="orderBox"><div class="small">Customize this order (materials & details)</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><label><input type="checkbox" id="optHair"> Real hair</label><label><input type="checkbox" id="optTeeth"> Real teeth</label><label><input type="checkbox" id="optGlass"> Glass eyes</label><label><input type="checkbox" id="optCloth"> Cloth body</label></div><div style="display:flex;gap:8px;align-items:center;margin-top:8px"><div class="small">Difficulty</div><input id="difficultyRange" type="range" min="1" max="3" value="1"></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button class="btn" id="btnCustomize">Accept (custom)</button></div></div></div></div>`;
+  document.getElementById('btnCustomize').onclick = ()=>{
+    const opts = {hair:!!document.getElementById('optHair').checked, teeth:!!document.getElementById('optTeeth').checked, glass:!!document.getElementById('optGlass').checked, cloth:!!document.getElementById('optCloth').checked, difficulty:+document.getElementById('difficultyRange').value};
+    STATE.currentOrder = {base: ord, options: opts};
+    HISTORY.push('order');
+    Audio.sfx && Audio.sfx.click();
+    prepareTasksForOrder(ord.type, opts);
+  };
+}
+
+// Prepare task sequence based on customization
+function prepareTasksForOrder(type, opts){
+  let seq = [];
+  if (type==='taxidermy'){
+    seq.push('Stuffing');
+    if (opts.cloth) seq.push('Line/Pad'); // alternative
+    seq.push('Sew Balance');
+    if (opts.glass) seq.push('Install Glass Eyes');
+    seq.push('Paint Details');
+    if (opts.hair) seq.push('Attach Hair (rare)');
+  } else {
+    seq.push('Implant Hair');
+    if (opts.teeth) seq.push('Insert Teeth');
+    if (opts.glass) seq.push('Place Glass Eyes');
+    seq.push('Tone & Blush');
+  }
+  // adjust difficulty influence on scoring
+  STATE._seq = seq;
+  STATE._step = 0;
+  STATE._stepScore = 0;
+  renderTask();
+}
+
+// Render current task (mini-games)
+function renderTask(){ refreshUI(); const step = STATE._seq[STATE._step]; main.innerHTML = `<div class="card"><div class="title-sm">${step}</div><div class="muted" style="margin-top:8px">Complete the mini-game below</div><div id="mini" style="margin-top:12px"></div><div id="progressWrap" style="margin-top:12px"></div></div>`; const host = document.getElementById('mini'); if (step==='Stuffing') mini_dragfill(host); else if (step==='Sew Balance') mini_balance(host); else if (step==='Paint Details' || step==='Tone & Blush') mini_clickpaint(host); else if (step==='Implant Hair') mini_hairgrid(host); else if (step==='Place Glass Eyes' || step==='Install Glass Eyes' || step==='Place Glass Eyes') mini_dragplace(host); else if (step==='Insert Teeth') mini_insertteeth(host); else if (step==='Attach Hair (rare)') mini_hairgrid(host); else { host.innerHTML='<div class=\"muted\">No task</div>'; } }
+
+// Mini-games (implementations)
+function mini_dragfill(host){
+  host.innerHTML = `<div style="display:flex;gap:20px;align-items:center;justify-content:center"><div style="display:grid;grid-template-columns:repeat(5,48px);gap:10px">${Array.from({length:10}).map(()=>'<div draggable="true" class="token">🧶</div>').join('')}</div><div class="dropzone" id="drop">🦊</div><div class="muted">Placed: <span id="placed">0</span>/10</div></div>`;
+  let placed=0; host.querySelectorAll('.token').forEach(t=> t.addEventListener('dragstart', e=> e.dataTransfer.setData('text','1')));
+  const drop = host.querySelector('#drop'); const placedEl = host.querySelector('#placed');
+  drop.addEventListener('dragover', e=> e.preventDefault()); drop.addEventListener('drop', e=>{ e.preventDefault(); placed=clamp(placed+1,0,10); placedEl.textContent=placed; Audio.sfx && Audio.sfx.click(); if (placed>=10){ const raw=clamp(20 - (placed-10)*2, 10, 20); finishStep(raw); } });
+}
+
+function mini_balance(host){
+  host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:12px"><div class="bar" style="width:420px"><div id="fill" style="width:0"></div></div><button class="btn" id="stopBtn">Stop Sewing</button></div>`;
+  const fill = host.querySelector('#fill'); const stop = host.querySelector('#stopBtn');
+  let v=0,dir=1; const id = setInterval(()=>{ v += dir*6; if (v>=100){v=100;dir=-1} if (v<=0){v=0;dir=1} fill.style.width=v+'%'; },120);
+  stop.onclick = ()=>{ clearInterval(id); const diff=Math.abs(50-v); const raw=clamp(20 - Math.round(diff/3), 0, 20); Audio.sfx && Audio.sfx.click(); finishStep(raw); };
+}
+
+function mini_clickpaint(host){
+  host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div class="muted">Layer paint: <span id="pct">0</span>%</div><div class="bar" style="width:420px"><div id="barFill" style="width:0;background:#f43f5e"></div></div><button class="btn btn-green" id="tap">Tap to Paint</button></div>`;
+  const bar = host.querySelector('#barFill'); const pct = host.querySelector('#pct'); const tap = host.querySelector('#tap'); let n=0,taps=20;
+  tap.onclick = ()=>{ n=clamp(n+1,0,taps); const p=Math.round((n/taps)*100); bar.style.width=p+'%'; pct.textContent=p; Audio.sfx && Audio.sfx.click(); if (n>=taps){ const raw=18 + Math.floor(Math.random()*3); Audio.sfx && Audio.sfx.ding(); finishStep(raw); } };
+}
+
+function mini_hairgrid(host){
+  host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><div class="grid5" id="grid">${Array.from({length:25}).map((_,i)=>`<div class="cell" data-i="${i}"></div>`).join('')}</div><div class="muted">Follicles: <span id="count">0</span> / target 12</div><div style="margin-top:8px"><button class="btn btn-green" id="finishHair" disabled>Finish Implanting</button></div></div>`;
+  const cells = host.querySelectorAll('.cell'); const countEl = host.querySelector('#count'); const finish = host.querySelector('#finishHair'); let set=new Set();
+  cells.forEach(c=> c.addEventListener('click', ()=>{ const i=+c.dataset.i; if (set.has(i)){ set.delete(i); c.classList.remove('on'); c.style.background='#f59e0b' } else { set.add(i); c.classList.add('on'); c.style.background='#111827' } countEl.textContent=set.size; finish.disabled = !(set.size>=11 && set.size<=13); finish.dataset.pts = clamp(20 - Math.abs(set.size-12)*3, 10, 20); Audio.sfx && Audio.sfx.click(); }));
+  finish.onclick = ()=>{ Audio.sfx && Audio.sfx.ding(); finishStep(+finish.dataset.pts || 15); };
+}
+
+function mini_dragplace(host){
+  host.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;gap:14px"><div style="display:flex;flex-direction:column;gap:8px"><div class="token" draggable="true">👁️</div><div class="token" draggable="true">👁️</div></div><div style="display:flex;gap:8px;align-items:center"><div class="socket" id="l"></div><div class="socket" id="r"></div></div></div>`;
+  const tokens = host.querySelectorAll('.token'); tokens.forEach(t=> t.addEventListener('dragstart', e=> e.dataTransfer.setData('text','eye')));
+  const left = host.querySelector('#l'), right = host.querySelector('#r'); let L=false,R=false;
+  [left,right].forEach(el=>{ el.addEventListener('dragover', e=> e.preventDefault()); el.addEventListener('drop', e=>{ e.preventDefault(); if (el===left && !L){ L=true; el.textContent='✅'; el.style.borderColor='#34d399' } else if (el===right && !R){ R=true; el.textContent='✅'; el.style.borderColor='#34d399' } Audio.sfx && Audio.sfx.click(); if (L && R){ Audio.sfx && Audio.sfx.ding(); const raw = 18 + Math.floor(Math.random()*3); finishStep(raw); } }); });
+}
+
+function mini_insertteeth(host){
+  host.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div class="muted">Insert teeth by dragging into sockets</div><div style="display:flex;gap:12px;align-items:center"><div class="token" draggable="true">🦷</div><div class="socket" id="toothSocket"></div></div><div style="margin-top:8px"><button class="btn" id="finishTeeth" disabled>Finish</button></div></div>`;
+  const tok = host.querySelector('.token'); const sock = host.querySelector('#toothSocket'); let filled=false; tok.addEventListener('dragstart', e=> e.dataTransfer.setData('text','tooth')); sock.addEventListener('dragover', e=> e.preventDefault()); sock.addEventListener('drop', e=>{ e.preventDefault(); filled=true; sock.textContent='✅'; sock.style.borderColor='#34d399'; document.getElementById('finishTeeth').disabled=false; Audio.sfx && Audio.sfx.click(); }); document.getElementById('finishTeeth').onclick = ()=>{ Audio.sfx && Audio.sfx.ding(); finishStep(16); };
+}
+
+// finish step and scoring
+function finishStep(raw){ let bonus=0; if (STATE.owned['glassEyes']) bonus+=5; if (STATE.owned['premiumHair']) bonus+=5; if (STATE.owned['qualityThread']) bonus+=5; if (STATE.owned['safeChem']) bonus+=5; const p=clamp(raw+bonus,0,20); STATE.roundScore = (STATE.roundScore||0) + p; STATE._step++; if (STATE._step < STATE._seq.length){ renderTask(); } else { STATE.ordersServed++; const diffPenalty = Math.min(15,(STATE.day-1)*3); const finalScore = clamp((STATE.roundScore||0) - diffPenalty, 0, 60); STATE.roundScore = finalScore; const stars = finalScore >=45 ? 3 : finalScore >=28 ? 2 : 1; STATE.stars = stars; STATE.rep += stars; const coinGain = stars*10 + Math.floor(finalScore/10); STATE.coins += coinGain; renderFeedback(); } updateBadges(); }
+
+function renderFeedback(){ updateBadges(); const starsHtml = '★'.repeat(STATE.stars) + '<span class="muted">' + '★'.repeat(3-STATE.stars) + '</span>'; main.innerHTML = `<div class="card center"><div class="title-sm">Delivery Feedback</div><div style="font-size:28px;margin:10px 0">${starsHtml}</div><div class="muted" style="margin-bottom:8px">You earned ${STATE.coins} coins (total) · Rep ${STATE.rep}</div><div style="margin-top:10px"><button class="btn btn-green" id="nextOrd">Next</button></div></div>`; document.getElementById('nextOrd').onclick = ()=>{ STATE._seq=null; STATE._step=0; STATE.roundScore=0; if (STATE.ordersServed >= STATE.ordersNeeded) showQuiz(); else renderOrder(); }; }
+
+function showQuiz(){ updateBadges(); const qset = QUIZZES[Math.min(STATE.day, Object.keys(QUIZZES).length)]; main.innerHTML = `<div class="card"><div class="title-sm">End of Day Quiz</div><div class="muted" style="margin-top:8px">Answer to earn bonus coins and unlock items.</div><div id="quizArea" style="margin-top:12px"></div><div style="margin-top:12px"><button class="btn btn-amber" id="submitQuiz">Submit Answers</button></div></div>`; const area = document.getElementById('quizArea'); qset.forEach((q,i)=>{ const block = document.createElement('div'); block.innerHTML = `<div style="font-weight:700;margin-bottom:6px">${i+1}. ${q.q}</div>` + q.opts.map((o,j)=>`<label class="quizOpt"><input type="radio" name="q${i}" value="${j}" /> ${o}</label>`).join(''); area.appendChild(block); }); document.getElementById('submitQuiz').onclick = ()=> submitQuiz(qset); Audio.sfx && Audio.sfx.page(); }
+
+function submitQuiz(qset){ let reward=0; const results=[]; qset.forEach((q,i)=>{ const sel = document.querySelector(`input[name='q${i}']:checked`); const chosen = sel ? parseInt(sel.value) : -1; const correct = chosen === q.a; results.push({q:q.q,correct}); if (correct) reward+=15; }); STATE.coins += reward; if (STATE.coins >= 50 && !STATE.owned['glassEyes']) STATE.owned['glassEyes'] = true; main.innerHTML = `<div class="card center"><div class="title-sm">Quiz Results</div><div class="muted" style="margin-top:8px">You earned ${reward} bonus coins.</div><div style="text-align:left;margin-top:10px">${results.map(r=>`<div>${r.correct? '✅' : '❌'} ${r.q}</div>`).join('')}</div><div style="margin-top:12px"><button class="btn btn-green" id="toShop">Go to Shop</button></div></div>`; document.getElementById('toShop').onclick = renderShop; Audio.sfx && Audio.sfx.ding(); updateBadges(); }
+
+function renderShop(){ updateBadges(); main.innerHTML = `<div class="card"><div class="title-sm">Workshop Shop</div><div class="muted" style="margin-top:8px">Spend coins on upgrades.</div><div class="shopGrid" style="margin-top:12px">${SHOP.map(it=>`<div class="shopItem"><div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">${it.icon} ${it.name}</div><div class="muted">${it.cost}c</div></div><div class="muted" style="margin-top:6px">${it.desc}</div><div style="margin-top:8px"><button class="btn btn-amber" data-id="${it.id}">${STATE.owned[it.id] ? 'Owned' : 'Buy'}</button></div></div>`).join('')}</div><div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn" id="nextDay">Next Day</button></div></div>`; document.querySelectorAll('[data-id]').forEach(b=> b.addEventListener('click',(e)=>{ const id=e.currentTarget.dataset.id; const it=SHOP.find(x=>x.id===id); if (STATE.owned[id]) return alert('Already owned'); if (STATE.coins < it.cost) return alert('Not enough coins'); STATE.coins -= it.cost; STATE.owned[id]=true; renderShop(); Audio.sfx && Audio.sfx.coin(); })); document.getElementById('nextDay').onclick = ()=>{ STATE.day++; STATE.ordersServed=0; STATE.roundScore=0; showNews(); updateBadges(); }; Audio.sfx && Audio.sfx.page(); }
+
+// start game button
+startBtn.addEventListener('click', ()=>{ startGame(); Audio.resume(); startBtn.style.display='none'; });
+
+// initial state
+updateBadges();
+main.innerHTML = `<div class="card center"><div class="title-sm">Welcome</div><div class="muted" style="margin-top:8px">Press Start to begin. Read the news each morning and complete orders to learn about the crafts.</div></div>`;
+
+// expose globals for debug
+window.STATE = STATE;
 window.startGame = startGame;
 </script>
 </body>
